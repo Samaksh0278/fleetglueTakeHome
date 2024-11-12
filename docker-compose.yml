@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  ros_nodes:
+    build: .
+    container_name: fleetglue_ros
+    environment:
+      - ROS_PACKAGE_PATH=/ros2_ws/src
+    volumes:
+      - ./src:/ros2_ws/src
+    command: ["ros2", "launch", "fleetglue_cpp", "nextjs_with_ros.launch.py"]
+    networks:
+      - fleetglue_network
+
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fleetglue_nextjs
+    working_dir: /nextjs_api
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    networks:
+      - fleetglue_network
+
+networks:
+  fleetglue_network:
+    driver: bridge

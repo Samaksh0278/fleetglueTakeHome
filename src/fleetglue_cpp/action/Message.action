@@ -1,0 +1,10 @@
+# Goal definition
+string mission_data
+
+---
+# Result definition
+bool success
+
+---
+# Feedback
+string status
