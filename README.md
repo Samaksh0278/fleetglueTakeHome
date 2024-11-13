@@ -29,14 +29,14 @@ This project demonstrates the integration of a REST API with ROS 2 nodes, where 
 {
 .
 ├── src/
-│   └── my_ros_package/
+│   └── fleetglue_cpp/
 │       ├── action/
 │       │   └── Mission.action      # Custom action definition
 │       ├── launch/
-│       │   └── mission_launch.py    # Launch file to start API and ROS nodes
+│       │   └── nextjs_with_ros.launch.py    # Launch file to start API and ROS nodes
 │       ├── src/
-│       │   ├── rn1_node.cpp         # RN1 - Action Client and API interaction
-│       │   └── rn2_node.cpp         # RN2 - Action Server
+│       │   ├── RN1.cpp         # RN1 - Action Client and API interaction
+│       │   └── RN2.cpp         # RN2 - Action Server
 │       ├── CMakeLists.txt           # ROS 2 build configuration
 │       └── package.xml              # ROS 2 package metadata
 ├── nextjs_api/
@@ -45,7 +45,7 @@ This project demonstrates the integration of a REST API with ROS 2 nodes, where 
 │   ├── package.json                 # Node.js dependencies
 │   └── ...                          # Other Next.js files
 ├── Dockerfile                       # Docker build instructions
-├── docker-compose.yml               # Multi-container Docker setup
+├── docker-compose.yml               # Docker setup
 └── entrypoint.sh                    # Entry script for starting ROS and API
 
 }
@@ -105,6 +105,20 @@ The project is Dockerized for easy deployment of both the ROS nodes and the REST
 1. **Dockerfile**: Defines the Docker image, including ROS 2, Node.js, and dependencies.
 2. **docker-compose.yml**: Manages multi-container services (ROS nodes and the API server).
 
+### Docker Commands
+
+Build the Docker images:
+
+`docker-compose build`
+
+Run the containers:
+
+`docker-compose up -d`
+
+Stop the containers:
+
+`docker-compose down`
+
 ### Environment Variables
 
 In the Dockerfile, environment variables are set to define paths for the ROS workspace and the API:
@@ -113,6 +127,7 @@ In the Dockerfile, environment variables are set to define paths for the ROS wor
 ENV ROS_WS=/ros2_ws
 ENV NEXTJS_DIR=/ros2_ws/src/my_ros_package/nextjs_api
 ENV ROS_PACKAGE_PATH=$ROS_WS/src:$ROS_PACKAGE_PATH
+```
 ---
 
 ## Acknowledgments
