@@ -25,38 +25,31 @@ This project demonstrates the integration of a REST API with ROS 2 nodes, where 
 ---
 
 ## Repository Structure
-repository {
-  src {
-    my_ros_package {
-      action {
-        MissionAction # Custom ROS action definition
-      }
-      launch {
-        missionLaunch # Launch file to start API and ROS nodes
-      }
-      src {
-        rn1Node # RN1 - Action Client and API interaction
-        rn2Node # RN2 - Action Server
-      }
-      packageXml # ROS 2 package metadata
-      cmakeLists # ROS 2 build configuration
-    }
-  }
-  nextjs_api {
-    pages {
-      api {
-        missionJs # REST API endpoints (GET and POST)
-      }
-    }
-    packageJson # Node.js dependencies
-  }
-  dockerfile # Docker build instructions
-  dockerCompose # Multi-container Docker setup
-  entrypointSh # Entry script for starting ROS and API
-  readmeMd # Documentation and usage instructions
+```graphql
+{
+.
+├── src/
+│   └── my_ros_package/
+│       ├── action/
+│       │   └── Mission.action      # Custom action definition
+│       ├── launch/
+│       │   └── mission_launch.py    # Launch file to start API and ROS nodes
+│       ├── src/
+│       │   ├── rn1_node.cpp         # RN1 - Action Client and API interaction
+│       │   └── rn2_node.cpp         # RN2 - Action Server
+│       ├── CMakeLists.txt           # ROS 2 build configuration
+│       └── package.xml              # ROS 2 package metadata
+├── nextjs_api/
+│   ├── pages/api/
+│   │   └── mission.js               # REST API endpoints (GET and POST)
+│   ├── package.json                 # Node.js dependencies
+│   └── ...                          # Other Next.js files
+├── Dockerfile                       # Docker build instructions
+├── docker-compose.yml               # Multi-container Docker setup
+└── entrypoint.sh                    # Entry script for starting ROS and API
+
 }
-
-
+```
 ---
 
 ## REST API Description
