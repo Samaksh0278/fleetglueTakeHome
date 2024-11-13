@@ -21,19 +21,19 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 )
 
 # Define and link node1
-add_executable(node1 src/node1.cpp)
-ament_target_dependencies(node1 rclcpp rclcpp_action)
-target_link_libraries(node1 CURL::libcurl jsoncpp_lib ${PROJECT_NAME}__rosidl_typesupport_cpp)
+add_executable(RN1 src/RN1.cpp)
+ament_target_dependencies(RN1 rclcpp rclcpp_action)
+target_link_libraries(RN1 CURL::libcurl jsoncpp_lib ${PROJECT_NAME}__rosidl_typesupport_cpp)
 
 # Define and link node2
-add_executable(node2 src/node2.cpp)
-ament_target_dependencies(node2 rclcpp rclcpp_action)
-target_link_libraries(node2 ${PROJECT_NAME}__rosidl_typesupport_cpp)
+add_executable(RN2 src/RN2.cpp)
+ament_target_dependencies(RN2 rclcpp rclcpp_action)
+target_link_libraries(RN2 ${PROJECT_NAME}__rosidl_typesupport_cpp)
 
 # Install executables
 install(TARGETS
-  node1
-  node2
+  RN1
+  RN2
   DESTINATION lib/${PROJECT_NAME})
 
   # Install launch files

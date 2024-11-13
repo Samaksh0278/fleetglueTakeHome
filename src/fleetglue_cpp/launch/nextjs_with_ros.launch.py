@@ -5,9 +5,9 @@ import os
 def generate_launch_description():
     # Define the path to the Next.js project directory
     nextjs_dir = os.path.join(
-        os.getenv('HOME'), 'ros2_ws', 'src', 'fleetglue_cpp', 'nextjs_api'
+        os.getenv('HOME'), 'ros2_ws', 'src', 'fleetglue_cpp', 'nextjs_api'   #this is to run locally
     )
-    #nextjs_dir = "/ros2_ws/src/fleetglue_cpp/nextjs_api"
+    nextjs_dir = "/ros2_ws/src/fleetglue_cpp/nextjs_api"                    #this is with docker
     return LaunchDescription([
         # Start the Next.js API server
         ExecuteProcess(
@@ -16,14 +16,14 @@ def generate_launch_description():
             output='screen'
         ),
         
-        # Start the ROS node (node1 in fleetglue_cpp package)
+        # Start RN1
         ExecuteProcess(
-            cmd=['ros2', 'run', 'fleetglue_cpp', 'node1'],
+            cmd=['ros2', 'run', 'fleetglue_cpp', 'RN1'],
             output='screen'
         ),
-        # Start node2 (action server node in fleetglue_cpp package)
+        # Start RN2
         ExecuteProcess(
-            cmd=['ros2', 'run', 'fleetglue_cpp', 'node2'],
+            cmd=['ros2', 'run', 'fleetglue_cpp', 'RN2'],
             output='screen'
         )
     ])
